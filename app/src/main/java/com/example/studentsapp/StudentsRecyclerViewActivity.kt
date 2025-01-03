@@ -1,5 +1,6 @@
 package com.example.studentsapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,16 +19,20 @@ import com.example.studentsapp.model.Student
 class StudentsRecyclerViewActivity : AppCompatActivity() {
 
     private var students: MutableList<Student>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_students_recycler_view)
+
+        // Set system bar insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+        // Initialize the students list
         students = Model.shared.students
         val recyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
         recyclerView.setHasFixedSize(true)
@@ -38,6 +43,12 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
         val adapter = StudentsRecyclerAdapter(students)
         recyclerView.adapter = adapter
 
+        // Handle AddStudentActivity button click
+        val plusButton: View = findViewById(R.id.recycler_view_activity_plus_button)
+        plusButton.setOnClickListener {
+            val intent = Intent(this, AddStudentActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     class StudentViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -94,8 +105,6 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
             holder.bind(students?.get(position), position)
-
         }
-
     }
 }

@@ -16,7 +16,9 @@ class Model private constructor(){
                 name = "Name: $i",
                 id = "Student ID: $i",
                 avatarUrl = "",
-                isChecked = false
+                isChecked = false,
+                phone = "Phone: $i",
+                address = "Address: $i"
             )
             students.add(student)
         }

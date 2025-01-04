@@ -1,8 +1,10 @@
 package com.example.studentsapp.model
 
 data class Student(
-    val name: String,
+    var name: String,
     val id: String,
     val avatarUrl: String,
-    var isChecked: Boolean
+    var isChecked: Boolean,
+    var phone: String,
+    var address: String
 )

@@ -25,14 +25,14 @@ class StudentDetailsActivity : AppCompatActivity() {
         val student = Model.shared.students[studentIndex]
 
         // Bind data to views
-        findViewById<TextView>(R.id.name_detail).text = student.name
-        findViewById<TextView>(R.id.id_detail).text = student.id
-        findViewById<TextView>(R.id.phone_detail).text = student.phone
-        findViewById<TextView>(R.id.address_detail).text = student.address
-        findViewById<CheckBox>(R.id.checked_detail).isChecked = student.isChecked
+        findViewById<TextView>(R.id.student_details_name).text = student.name
+        findViewById<TextView>(R.id.student_details_id).text = student.id
+        findViewById<TextView>(R.id.student_details_phone).text = student.phone
+        findViewById<TextView>(R.id.student_details_address).text = student.address
+        findViewById<CheckBox>(R.id.student_details_checked).isChecked = student.isChecked
 
         // Edit button functionality
-        findViewById<Button>(R.id.edit_button).setOnClickListener {
+        findViewById<Button>(R.id.student_details_edit_button).setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
             intent.putExtra("studentIndex", studentIndex)
             startActivity(intent)

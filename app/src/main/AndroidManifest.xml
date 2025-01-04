@@ -28,7 +28,7 @@
             android:name=".StudentsRecyclerViewActivity"
             android:exported="true" />
 
-        <!-- ListView Activity (if used elsewhere) -->
+        <!-- ListView Activity -->
         <activity
             android:name=".StudentsListViewActivity"
             android:exported="true" />

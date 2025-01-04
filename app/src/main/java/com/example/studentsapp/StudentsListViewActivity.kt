@@ -1,7 +1,6 @@
 package com.example.studentsapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,8 @@ import com.example.studentsapp.model.Student
 
 class StudentsListViewActivity : AppCompatActivity() {
 
-    var students: MutableList<Student>? = null
+    private var students: MutableList<Student>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,82 +29,42 @@ class StudentsListViewActivity : AppCompatActivity() {
             insets
         }
 
+        // Initialize students list
         students = Model.shared.students
+
+        // Set up the ListView and adapter
         val listView: ListView = findViewById(R.id.students_list_view)
         listView.adapter = StudentsAdapter()
     }
 
-    inner class StudentsAdapter(): BaseAdapter() {
-        override fun getCount(): Int = students?.size ?: 2 // if students is empty, create 2 rows
+    inner class StudentsAdapter : BaseAdapter() {
+        override fun getCount(): Int = students?.size ?: 0
 
-        override fun getItem(p0: Int): Any {
-            TODO("Not yet implemented")
-        }
+        override fun getItem(position: Int): Any = students?.get(position) ?: Student("", "", "", false, "", "")
 
-        override fun getItemId(p0: Int): Long {
-            TODO("Not yet implemented")
-        }
+        override fun getItemId(position: Int): Long = position.toLong()
 
-        override fun getView(position: Int, converView: View?, parent: ViewGroup?): View {
-            val inflator = LayoutInflater.from(parent?.context)
-            val view = converView ?: inflator.inflate(
-                R.layout.student_list_row,
-                parent,
-                false
-            ).apply {
-                findViewById<CheckBox>(R.id.student_row_check_box).apply {
-                    setOnClickListener { view ->
-                        (tag as? Int)?.let { tag ->
-                            val student = students?.get(tag)
-                            student?.isChecked = (view as? CheckBox)?.isChecked ?: false
-                        }
-                    }
-                }
-            }
-
-
-//            var view = converView
-//
-//            if (view == null) {
-//                view = inflator.inflate(R.layout.student_list_row, parent, false)
-//                val checkBox: CheckBox? = view?.findViewById(R.id.student_row_check_box)
-////                checkBox?.setOnClickListener {
-////                    student?.isChecked = checkBox.isChecked
-////                }
-//
-//                checkBox?.apply {
-////                    setOnClickListener {
-////                        (tag as? Int)?.let { tag ->
-////                            val student = students?.get(tag)
-////                            student?.isChecked = (view as? CheckBox)?.isChecked ?: false
-////                        }
-////                    }
-//                }
-//            }
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            val inflater = LayoutInflater.from(parent?.context)
+            val view = convertView ?: inflater.inflate(R.layout.student_list_row, parent, false)
 
             val student = students?.get(position)
 
-            val nameTextView: TextView? = view?.findViewById(R.id.student_row_name_text_view)
-            val idTextView: TextView? = view?.findViewById(R.id.student_row_id_text_view)
-            val checkBox: CheckBox? = view?.findViewById(R.id.student_row_check_box)
+            // Bind data to views
+            val nameTextView: TextView = view.findViewById(R.id.student_name)
+            val idTextView: TextView = view.findViewById(R.id.student_id)
+            val checkBox: CheckBox = view.findViewById(R.id.student_check)
 
+            nameTextView.text = student?.name ?: ""
+            idTextView.text = student?.id ?: ""
+            checkBox.isChecked = student?.isChecked ?: false
 
-
-            Log.d("TAG", "Inflating position $position")
-
-            nameTextView?.text = student?.name
-            idTextView?.text = student?.id
-            checkBox?.apply {
-                isChecked = student?.isChecked ?: false
-                tag = position
+            // Handle CheckBox changes
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                student?.isChecked = isChecked
             }
-//            checkBox?.isChecked = student?.isChecked ?: false
 
-
-
-            // if null, it crashes. we use it in rare cases, like here (we check before if view is null)
-            return view!!
+            return view
         }
-
     }
 }

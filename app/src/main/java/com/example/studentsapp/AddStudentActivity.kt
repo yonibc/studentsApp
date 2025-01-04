@@ -36,7 +36,9 @@ class AddStudentActivity : AppCompatActivity() {
         cancelButton.setOnClickListener { finish() }
 
         saveButton.setOnClickListener {
-            // Create an Intent to pass the data back
+            savedMessage.text = "${nameEditText.text} is saved :)"
+
+            // pass the data using intent
             val intent = Intent().apply {
                 putExtra("name", nameEditText.text.toString())
                 putExtra("id", idEditText.text.toString())
@@ -44,8 +46,8 @@ class AddStudentActivity : AppCompatActivity() {
                 putExtra("address", addressEditText.text.toString())
                 putExtra("isChecked", isCheckBox.isChecked)
             }
-            setResult(RESULT_OK, intent) // Send the result back
-            finish() // Close this activity
+            setResult(RESULT_OK, intent)
+            finish()
         }
     }
 }

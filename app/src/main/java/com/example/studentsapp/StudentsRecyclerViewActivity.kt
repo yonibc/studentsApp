@@ -14,7 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.studentsapp.model.Model
 import com.example.studentsapp.model.Student
 
 class StudentsRecyclerViewActivity : AppCompatActivity() {
@@ -50,8 +49,6 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
             insets
         }
 
-        // Initialize the students list
-//        students = Model.shared.students
         val recyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
         recyclerView.setHasFixedSize(true)
 

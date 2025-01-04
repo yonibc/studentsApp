@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,118 +12,116 @@
         android:id="@+id/label_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Name:"
         android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/name_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:hint="Enter Name"
-        app:layout_constraintTop_toTopOf="@id/label_name"
-        app:layout_constraintStart_toEndOf="@id/label_name"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@id/label_name"
+        app:layout_constraintTop_toTopOf="@id/label_name" />
 
     <!-- ID Display -->
     <TextView
         android:id="@+id/label_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Student ID:"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/name_input"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/name_input" />
 
     <TextView
         android:id="@+id/id_display"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="1"
         android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/label_id"
-        app:layout_constraintStart_toEndOf="@id/label_id"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@id/label_id"
+        app:layout_constraintTop_toTopOf="@id/label_id" />
 
     <!-- Phone Input -->
     <TextView
         android:id="@+id/label_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Phone:"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/id_display"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/id_display" />
 
     <EditText
         android:id="@+id/phone_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:hint="Enter Phone"
-        app:layout_constraintTop_toTopOf="@id/label_phone"
-        app:layout_constraintStart_toEndOf="@id/label_phone"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@id/label_phone"
+        app:layout_constraintTop_toTopOf="@id/label_phone" />
 
     <!-- Address Input -->
     <TextView
         android:id="@+id/label_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Address:"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/phone_input"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/phone_input" />
 
     <EditText
         android:id="@+id/address_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:hint="Enter Address"
-        app:layout_constraintTop_toTopOf="@id/label_address"
-        app:layout_constraintStart_toEndOf="@id/label_address"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@id/label_address"
+        app:layout_constraintTop_toTopOf="@id/label_address" />
 
     <!-- Checked Checkbox -->
     <CheckBox
         android:id="@+id/checked_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Checked"
-        app:layout_constraintTop_toBottomOf="@id/address_input"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/address_input" />
 
     <!-- Save Button -->
     <Button
         android:id="@+id/save_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
         android:text="Save"
-        app:layout_constraintTop_toBottomOf="@id/checked_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cancel_button"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancel_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Cancel Button -->
     <Button
         android:id="@+id/cancel_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
         android:text="Cancel"
-        app:layout_constraintTop_toBottomOf="@id/checked_input"
-        app:layout_constraintStart_toEndOf="@id/save_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/save_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

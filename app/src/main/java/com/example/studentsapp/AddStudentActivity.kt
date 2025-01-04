@@ -1,7 +1,9 @@
 package com.example.studentsapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -29,11 +31,21 @@ class AddStudentActivity : AppCompatActivity() {
         val idEditText: EditText = findViewById(R.id.add_student_activity_id_edit_text)
         val phoneEditText: EditText = findViewById(R.id.add_student_activity_phone_edit_text)
         val addressEditText: EditText = findViewById(R.id.add_student_activity_address_edit_text)
+        val isCheckBox: CheckBox = findViewById(R.id.add_student_activity_is_checked_check_box)
 
         cancelButton.setOnClickListener { finish() }
 
         saveButton.setOnClickListener {
-            savedMessage.text = "${nameEditText.text} is saved :)"
+            // Create an Intent to pass the data back
+            val intent = Intent().apply {
+                putExtra("name", nameEditText.text.toString())
+                putExtra("id", idEditText.text.toString())
+                putExtra("phone", phoneEditText.text.toString())
+                putExtra("address", addressEditText.text.toString())
+                putExtra("isChecked", isCheckBox.isChecked)
+            }
+            setResult(RESULT_OK, intent) // Send the result back
+            finish() // Close this activity
         }
     }
 }

@@ -8,17 +8,35 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studentsapp.model.Model
+//import com.example.studentsapp.model.Model
 import com.example.studentsapp.model.Student
 
 class StudentsRecyclerViewActivity : AppCompatActivity() {
 
-    private var students: MutableList<Student>? = null
+    private var students: MutableList<Student>? = mutableListOf()
+    private lateinit var adapter: StudentsRecyclerAdapter
+
+    private val addStudentLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val name = result.data?.getStringExtra("name") ?: return@registerForActivityResult
+                val id = result.data?.getStringExtra("id") ?: return@registerForActivityResult
+                val phone = result.data?.getStringExtra("phone") ?: ""
+                val address = result.data?.getStringExtra("address") ?: ""
+                val isChecked = result.data?.getBooleanExtra("isChecked", false) ?: false
+
+                // Add the new student to the list
+                val newStudent = Student(name, id, "", isChecked, phone, address)
+                students?.add(newStudent)
+                adapter.notifyDataSetChanged()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +51,21 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
         }
 
         // Initialize the students list
-        students = Model.shared.students
+//        students = Model.shared.students
         val recyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
         recyclerView.setHasFixedSize(true)
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
-        val adapter = StudentsRecyclerAdapter(students)
+        adapter = StudentsRecyclerAdapter(students)
         recyclerView.adapter = adapter
 
         // Handle AddStudentActivity button click
         val plusButton: View = findViewById(R.id.recycler_view_activity_plus_button)
         plusButton.setOnClickListener {
             val intent = Intent(this, AddStudentActivity::class.java)
-            startActivity(intent)
+            addStudentLauncher.launch(intent)
         }
     }
 

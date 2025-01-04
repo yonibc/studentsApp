@@ -11,6 +11,10 @@ import com.example.studentsapp.model.Model
 class StudentDetailsActivity : AppCompatActivity() {
     private var studentIndex: Int = -1
 
+    companion object {
+        const val EDIT_STUDENT_REQUEST_CODE = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_details)
@@ -22,20 +26,31 @@ class StudentDetailsActivity : AppCompatActivity() {
             return
         }
 
-        val student = Model.shared.students[studentIndex]
-
-        // Bind data to views
-        findViewById<TextView>(R.id.student_details_name).text = student.name
-        findViewById<TextView>(R.id.student_details_id).text = student.id
-        findViewById<TextView>(R.id.student_details_phone).text = student.phone
-        findViewById<TextView>(R.id.student_details_address).text = student.address
-        findViewById<CheckBox>(R.id.student_details_checked).isChecked = student.isChecked
+        // Update UI with student details
+        updateDetails()
 
         // Edit button functionality
         findViewById<Button>(R.id.student_details_edit_button).setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
             intent.putExtra("studentIndex", studentIndex)
-            startActivity(intent)
+            startActivityForResult(intent, EDIT_STUDENT_REQUEST_CODE)
+        }
+    }
+
+    private fun updateDetails() {
+        val student = Model.shared.students[studentIndex]
+        findViewById<TextView>(R.id.student_details_name).text = "${student.name}"
+        findViewById<TextView>(R.id.student_details_id).text = "${student.id}"
+        findViewById<TextView>(R.id.student_details_phone).text = "${student.phone}"
+        findViewById<TextView>(R.id.student_details_address).text = "${student.address}"
+        findViewById<CheckBox>(R.id.student_details_checked).isChecked = student.isChecked
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == EDIT_STUDENT_REQUEST_CODE && resultCode == RESULT_OK) {
+            // Refresh the details screen after editing
+            updateDetails()
         }
     }
 }

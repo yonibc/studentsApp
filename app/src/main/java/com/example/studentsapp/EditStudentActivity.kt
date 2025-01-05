@@ -1,11 +1,9 @@
 package com.example.studentsapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.studentsapp.model.Model
 
@@ -22,27 +20,27 @@ class EditStudentActivity : AppCompatActivity() {
 
         // Bind data to views
         val nameEditText = findViewById<EditText>(R.id.name_input)
+        val idEditText = findViewById<EditText>(R.id.id_input) // Now editable
         val phoneEditText = findViewById<EditText>(R.id.phone_input)
         val addressEditText = findViewById<EditText>(R.id.address_input)
         val isCheckedCheckbox = findViewById<CheckBox>(R.id.checked_input)
-        val idTextView = findViewById<TextView>(R.id.id_display)
 
         nameEditText.setText(student.name)
+        idEditText.setText(student.id) // Bind the ID field
         phoneEditText.setText(student.phone)
         addressEditText.setText(student.address)
         isCheckedCheckbox.isChecked = student.isChecked
-        idTextView.text = student.id // Display ID as non-editable
 
         // Save button updates the student details
         findViewById<Button>(R.id.save_button).setOnClickListener {
             student.name = nameEditText.text.toString()
+            student.id = idEditText.text.toString() // Save the updated ID
             student.phone = phoneEditText.text.toString()
             student.address = addressEditText.text.toString()
             student.isChecked = isCheckedCheckbox.isChecked
 
-            // Pass result back to the details activity
             setResult(RESULT_OK)
-            finish()
+            finish() // Close the activity
         }
 
         // Cancel button discards changes

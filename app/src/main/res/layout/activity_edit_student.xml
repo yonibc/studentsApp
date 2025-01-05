@@ -7,134 +7,138 @@
     android:layout_height="match_parent"
     tools:context=".EditStudentActivity">
 
-    <!-- Scrollable Content -->
-    <ScrollView
-        android:id="@+id/scroll_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
+    <!-- Avatar Image -->
+    <ImageView
+        android:id="@+id/avatar_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/student_avatar"
+        app:srcCompat="@drawable/profile_avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_container"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+    <!-- Name Field -->
+    <TextView
+        android:id="@+id/name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/avatar_image"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
 
-            <!-- Name Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+    <EditText
+        android:id="@+id/name_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/avatar_image"
+        app:layout_constraintStart_toEndOf="@id/name_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Name" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name:"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="8dp" />
+    <!-- Student ID Field -->
+    <TextView
+        android:id="@+id/id_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student ID:"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/name_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
 
-                <EditText
-                    android:id="@+id/name_input"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Name" />
-            </LinearLayout>
+    <EditText
+        android:id="@+id/id_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/name_input"
+        app:layout_constraintStart_toEndOf="@id/id_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Student ID" />
 
-            <!-- Student ID Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+    <!-- Phone Field -->
+    <TextView
+        android:id="@+id/phone_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone:"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/id_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Student ID:"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="8dp" />
+    <EditText
+        android:id="@+id/phone_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/id_input"
+        app:layout_constraintStart_toEndOf="@id/phone_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Phone"
+        android:inputType="phone" />
 
-                <EditText
-                    android:id="@+id/id_input"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="ID"
-                    android:inputType="text" />
-            </LinearLayout>
+    <!-- Address Field -->
+    <TextView
+        android:id="@+id/address_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address:"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/phone_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
 
-            <!-- Phone Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+    <EditText
+        android:id="@+id/address_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/phone_input"
+        app:layout_constraintStart_toEndOf="@id/address_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Address"
+        android:inputType="textPostalAddress" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone:"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="8dp" />
+    <!-- Checked Checkbox -->
+    <CheckBox
+        android:id="@+id/checked_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checked"
+        app:layout_constraintTop_toBottomOf="@id/address_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
 
-                <EditText
-                    android:id="@+id/phone_input"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Phone"
-                    android:inputType="phone" />
-            </LinearLayout>
-
-            <!-- Address Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address:"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="8dp" />
-
-                <EditText
-                    android:id="@+id/address_input"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Address" />
-            </LinearLayout>
-
-            <!-- Checkbox -->
-            <CheckBox
-                android:id="@+id/checked_input"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Checked"
-                android:layout_marginBottom="16dp" />
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- Button Container -->
+    <!-- Buttons at the Bottom -->
     <LinearLayout
-        android:id="@+id/button_container"
+        android:id="@+id/buttons_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp">
 
         <Button
             android:id="@+id/save_button"
@@ -149,6 +153,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="Cancel"
+            android:layout_marginStart="8dp" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

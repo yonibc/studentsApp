@@ -11,6 +11,7 @@ import com.example.studentsapp.model.Model
 class StudentDetailsActivity : AppCompatActivity() {
     private var studentIndex: Int = -1
 
+    // Const variable
     companion object {
         const val EDIT_STUDENT_REQUEST_CODE = 1
     }
@@ -39,10 +40,10 @@ class StudentDetailsActivity : AppCompatActivity() {
 
     private fun updateDetails() {
         val student = Model.shared.students[studentIndex]
-        findViewById<TextView>(R.id.student_details_name).text = "${student.name}"
-        findViewById<TextView>(R.id.student_details_id).text = "${student.id}"
-        findViewById<TextView>(R.id.student_details_phone).text = "${student.phone}"
-        findViewById<TextView>(R.id.student_details_address).text = "${student.address}"
+        findViewById<TextView>(R.id.student_details_name).text = student.name
+        findViewById<TextView>(R.id.student_details_id).text = student.id
+        findViewById<TextView>(R.id.student_details_phone).text = student.phone
+        findViewById<TextView>(R.id.student_details_address).text = student.address
         findViewById<CheckBox>(R.id.student_details_checked).isChecked = student.isChecked
     }
 

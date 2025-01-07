@@ -1,5 +1,6 @@
 package com.example.studentsapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -20,6 +21,7 @@ class EditStudentActivity : AppCompatActivity() {
             finish()
             return
         }
+
         val student = Model.shared.students[studentIndex]
 
         // Bind data to views
@@ -49,6 +51,15 @@ class EditStudentActivity : AppCompatActivity() {
 
         // Cancel button discards changes
         findViewById<Button>(R.id.cancel_button).setOnClickListener {
+            finish()
+        }
+
+        // Delete button removes the student and closes the activity
+        findViewById<Button>(R.id.delete_button).setOnClickListener {
+            Model.shared.students.removeAt(studentIndex)
+            setResult(RESULT_OK)
+            val intent = Intent(this, StudentsRecyclerViewActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

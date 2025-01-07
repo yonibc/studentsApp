@@ -18,13 +18,13 @@
 
     <Button
         android:id="@+id/add_student_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:text="+"
         android:backgroundTint="@android:color/darker_gray"
+        android:text="+"
         android:textColor="@android:color/white"
-        app:cornerRadius="50dp"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">studentsApp</string>
+    <string name="student_avatar">Student Avatar</string>
 </resources>
